@@ -3,10 +3,13 @@ import React, { useState, useEffect } from "react";
 const ClockFunc = () => {
   let [date, tick] = useState(new Date());
 
-  const timerID = setInterval(
-    () => tick(date = new Date()),
-    1000
-  );
+  useEffect(() => {
+    const timerID = setInterval(
+      () => tick(date = new Date()),
+      1000
+    );
+    return () => {clearInterval(timerID)}
+  }, []);
 
   return (
     <div>
